@@ -1,0 +1,244 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: black;
+    color: white;
+    position: relative;
+    overflow: hidden; /* Ensure content stays within bounds */
+    padding: 20px; /* Add padding to create gap */
+}
+
+body.slide-up {
+    transform: translateY(-100%);
+}
+
+body.fade-in {
+    opacity: 1;
+}
+
+h1, h2, h3, h4, h5, h6, p, label, span, a, input, button {
+    color: white;
+}
+
+table {
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+td {
+    border: 2px solid white;
+    padding: 30px;
+    text-align: center;
+    font-size: 24px;
+    cursor: pointer;
+    transition: background-color 0.3s, font-size 0.3s;
+}
+
+td:hover {
+    font-size: 30px;
+    color: bisque;
+}
+
+.selected {
+    background-color: green;
+}
+
+.adjacent {
+    background-color: lightblue;
+}
+
+button.cell-button {
+    background: none;
+    border: none;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    padding: 0;
+    text-align: center;
+}
+
+.splash-container {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+    padding: 40px;
+    border-radius: 10px;
+}
+
+.retro-logo {
+    font-size: 72px;
+    font-family: 'Press Start 2P', cursive; /* Use a retro font */
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: white;
+    text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00, 0 0 40px #00ff00;
+    margin-bottom: 20px;
+}
+
+.play-button {
+    display: inline-block;
+    margin: 10px 20px; /* Added margin between buttons */
+    padding: 20px 40px;
+    font-size: 24px;
+    text-decoration: none;
+    border: 2px solid white;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    transition: color 0.2s;
+    border-radius: 10px;
+}
+
+.play-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background-color: white;
+    transition: transform 0.3s ease-in-out;
+    transform: translate(-50%, -50%) scale(0);
+    z-index: 1;
+}
+
+.play-button:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.play-button:hover {
+    color: black;
+}
+
+.play-button:hover span {
+    color: black;
+}
+
+.play-button span {
+    position: relative;
+    z-index: 2;
+}
+
+.validation-message {
+    color: white;
+    font-size: 24px;
+}
+
+.swap {
+    transition: transform 0.5s;
+}
+
+.swap-active {
+    transform: scale(1.2);
+}
+
+body {
+    cursor: none; /* Hide the default cursor */
+}
+
+.cursor {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: white;
+    position: absolute;
+    pointer-events: none;
+    transition: transform 0.1s ease-out;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+}
+
+label, input {
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+input[type="text"], input[type="number"] {
+    padding: 10px;
+    font-size: 18px;
+    border: 2px solid white;
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+
+input[type="submit"] {
+    margin-top: 20px;
+    padding: 15px 30px;
+    font-size: 24px;
+    color: white;
+    background-color: black;
+    border: 2px solid white;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+input[type="submit"]:hover {
+    background-color: white;
+    color: black;
+}
+
+/* Background image with blur */
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('static/images/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    filter: blur(5px);
+    z-index: 1;
+}
+
+@keyframes vibrate {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+    100% { transform: translate(0); }
+}
+
+.retro-logo:hover {
+    animation: vibrate 0.2s infinite;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 5px solid white; /* Adjust the border size as needed */
+    pointer-events: none; /* Allow interactions through the border */
+    box-sizing: border-box;
+}
+
+
+a, button, .play-button, td {
+    cursor: none;
+}
+
+
+input, select, textarea {
+    cursor: none;
+}

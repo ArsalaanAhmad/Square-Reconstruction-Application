@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Magic Square Game</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/magic-square.js" defer></script>
+</head>
+<body>
+<div class="retro-logo">Welcome, <span th:text="${name}">Player</span></div>
+<form action="/generate" method="post">
+    <input type="hidden" name="name" th:value="${name}">
+    <label for="size">Enter the size of the magic square (odd number > 1):</label>
+    <input type="number" id="size" name="size" required>
+    <span th:if="${error}" th:text="${error}"></span>
+    <button type="submit">Generate</button>
+</form>
+
+<audio id="backgroundMusic" loop autoplay>
+    <source src="/audio/Overlay.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+<audio id="typingSound" src="/audio/keyboardsound.mp3" preload="auto"></audio>
+
+</body>
+</html>

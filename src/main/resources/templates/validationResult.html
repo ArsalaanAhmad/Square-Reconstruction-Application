@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Validation Result</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div>
+    <h2 th:text="${isValid ? 'The magic square is valid!' : 'The magic square is not valid.'}" class="validation-message"></h2>
+    <p>Row sums: <span th:text="${#arrays.slice(sums, 0, size)}"></span></p>
+    <p>Column sums: <span th:text="${#arrays.slice(sums, size, 2 * size)}"></span></p>
+    <p>Diagonal sums: <span th:text="${#arrays.slice(sums, 2 * size, sums.length)}"></span></p>
+</div>
+</body>
+</html>

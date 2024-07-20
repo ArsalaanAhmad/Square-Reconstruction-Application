@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Leaderboard</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<h1>Leaderboard</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Rank</th>
+        <th>Player Name</th>
+        <th>Moves</th>
+        <th>Size</th>
+        <th>Score</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="entry, stat : ${leaderboard}">
+        <td th:text="${stat.index + 1}"></td>
+        <td th:text="${entry.playerName}"></td>
+        <td th:text="${entry.moves}"></td>
+        <td th:text="${entry.size}"></td>
+        <td th:text="${entry.score}"></td>
+    </tr>
+    </tbody>
+</table>
+<a href="/">Back to Home</a>
+</body>
+</html>
