@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: magic-square
+    env: docker
+    plan: free
+    repo: https://github.com/ArsalaanAhmad/Square-Reconstruction-Application.git
+    branch: main
+    dockerfilePath: Dockerfile
+    healthCheckPath: /
+    autoDeploy: true
