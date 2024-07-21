@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', (event) => {
     const typingSound = document.getElementById('typingSound');
+    const moveCountElement = document.getElementById('moveCount');
+    let moveCount = 0;
 
     document.addEventListener('keydown', (e) => {
         typingSound.currentTime = 0; // Rewind to the start
@@ -7,14 +9,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 
     // Functionality of mouse
-
     const cursor = document.createElement('div');
     cursor.classList.add('cursor');
     document.body.appendChild(cursor);
 
     let mouseX = 0, mouseY = 0;
     let cursorX = 0, cursorY = 0;
-    const speed = 0.09; // The smaller the number, the smoother the transition
+    const speed = 0.1; // The smaller the number, the smoother the transition
 
     function animate() {
         const distX = mouseX - cursorX;
@@ -44,7 +45,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 
     // Magic Square Functionality
-
     const cells = document.querySelectorAll('td');
     let selectedCell = null;
 
@@ -55,6 +55,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 // If an adjacent cell is clicked, perform the swap
                 if (this.classList.contains('adjacent')) {
                     swapCells(selectedCell, this);
+                    moveCount++;
+                    moveCountElement.textContent = moveCount;
                     selectedCell = null;
                 } else {
                     // If a non-adjacent cell is clicked, reset selection
@@ -111,7 +113,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 
     // Validate Magic Square to see if the correct one has been reconstructed by the player
-
     function validateMagicSquare() {
         fetch('/validate', {
             method: 'POST'
@@ -126,10 +127,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
     document.querySelectorAll('a').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-
             const targetUrl = this.href;
             document.body.classList.add('slide-up');
-
             setTimeout(() => {
                 window.location.href = targetUrl;
             }, 500); // Match the duration of the CSS transition

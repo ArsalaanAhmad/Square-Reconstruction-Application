@@ -242,3 +242,19 @@ a, button, .play-button, td {
 input, select, textarea {
     cursor: none;
 }
+
+.result-header {
+    font-size: 48px;
+    font-family: 'Press Start 2P', cursive; /* Use a retro font */
+    text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00, 0 0 40px #00ff00;
+    margin-bottom: 20px;
+}
+
+.move-counter {
+    font-size: 24px;
+    font-family: 'Press Start 2P', cursive; /* Use a retro font */
+    text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00, 0 0 40px #00ff00;
+    margin-top: 20px;
+    text-align: center;
+    color: white;
+}

@@ -3,10 +3,11 @@
 <head>
     <title>Magic Square Result</title>
     <link rel="stylesheet" href="/css/style.css">
-    <script src="/js/magic-square.js"></script>
+    <script src="/js/magic-square.js" defer></script>
 </head>
 <body>
-<h1>Magic Square Result for <span th:text="${name}">Name</span></h1>
+<h1 class="result-header">Magic Square Result for <span th:text="${name}">Name</span></h1>
+<div class="move-counter">Moves: <span id="moveCount">0</span></div>
 <table>
     <tr th:each="row, rowStat : ${magicSquare}">
         <td th:each="cell, cellStat : ${row}"
@@ -15,8 +16,8 @@
             onclick="selectCell(this)">0</td>
     </tr>
 </table>
-<a href="/">Start Over</a>
-<div id="validationResult"></div>
+<a href="/" class="play-button" onclick="playClickingSound()"><span>Start Over</span></a>
+<div id="validationResult" class="validation-message"></div>
 <form id="swapForm" method="post" action="/swap" style="display:none;">
     <input type="hidden" name="x1" id="x1">
     <input type="hidden" name="y1" id="y1">
@@ -28,7 +29,7 @@
     <source src="/audio/StartingMusic.mp3" type="audio/mpeg">
     Your browser does not support the audio element.
 </audio>
-<audio id="clickingSound" src="/audio/keyboardsound.mp3" preload="auto"></audio>
+<audio id="clickingSound" src="/audio/clicksound.mp3" preload="auto"></audio>
 
 <script>
     // Set the volume for background music
