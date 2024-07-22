@@ -65,10 +65,8 @@ public class MagicSquareController {
     @PostMapping("/validate")
     public String validate(@SessionAttribute("magicSquare") int[][] magicSquare, Model model) {
         boolean isValid = MagicSquareGenerator.isValidMagicSquare(magicSquare);
-        int[] sums = MagicSquareGenerator.getSums(magicSquare);
         model.addAttribute("isValid", isValid);
-        model.addAttribute("sums", sums);
-        return "validationResult";
+        return "validationResult"; // Make sure this fragment or view exists
     }
     }
 

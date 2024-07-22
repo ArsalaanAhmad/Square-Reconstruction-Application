@@ -45,10 +45,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 
     // Magic Square Functionality
-    const cells = document.querySelectorAll('td');
+    const magicCells = document.querySelectorAll('td');
     let selectedCell = null;
 
-    cells.forEach(cell => {
+    magicCells.forEach(cell => {
         cell.addEventListener('click', function() {
             const [_, row, col] = this.id.split('-').map(Number);
             if (selectedCell) {
@@ -93,8 +93,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 
     function clearSelection() {
-        const cells = document.querySelectorAll('td');
-        cells.forEach(c => {
+        magicCells.forEach(c => {
             c.classList.remove('selected', 'adjacent');
         });
         selectedCell = null;
@@ -115,12 +114,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
     // Validate Magic Square to see if the correct one has been reconstructed by the player
     function validateMagicSquare() {
         fetch('/validate', {
-            method: 'POST'
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({}) // Send the required data if needed
         })
             .then(response => response.text())
             .then(html => {
                 document.getElementById('validationResult').innerHTML = html;
-            });
+            })
+            .catch(error => console.error('Error:', error));
     }
 
     // Page transition logic
@@ -145,4 +149,19 @@ document.addEventListener('DOMContentLoaded', (event) => {
     setTimeout(() => {
         document.body.classList.add('fade-in');
     }, 0);
+
+    // Add the 3-second delay and zoom-in effect
+    const table = document.querySelector('table');
+    const delayCells = document.querySelectorAll('td');
+
+    setTimeout(() => {
+        table.classList.add('zoom-in');
+
+        // Add a delay for each number to appear one by one
+        delayCells.forEach((cell, index) => {
+            setTimeout(() => {
+                cell.style.opacity = 1;
+            }, index * 100); // Adjust the delay time as needed (e.g., 100ms per cell)
+        });
+    }, 1000); // 3-second delay before showing the table
 });

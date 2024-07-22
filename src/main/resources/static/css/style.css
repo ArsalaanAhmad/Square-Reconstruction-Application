@@ -14,8 +14,10 @@ body {
     color: white;
     position: relative;
     overflow: hidden; /* Ensure content stays within bounds */
-    padding: 20px; /* Add padding to create gap */
+    border: 5px transparent; /* Add white border */
+    padding: 20px; /* Adjust padding to create a gap between edge and white border */
 }
+
 
 body.slide-up {
     transform: translateY(-100%);
@@ -32,6 +34,10 @@ h1, h2, h3, h4, h5, h6, p, label, span, a, input, button {
 table {
     border-collapse: collapse;
     margin: 20px 0;
+    color: white;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
 }
 
 td {
@@ -39,11 +45,12 @@ td {
     padding: 30px;
     text-align: center;
     font-size: 24px;
-    cursor: pointer;
-    transition: background-color 0.3s, font-size 0.3s;
+    transition: background-color 0.3s, font-size 0.3s, color 0.3s;
+    color: white;
 }
 
 td:hover {
+    transition: background-color 0.3s, font-size 0.3s, color 0.3s;
     font-size: 30px;
     color: bisque;
 }
@@ -244,17 +251,43 @@ input, select, textarea {
 }
 
 .result-header {
-    font-size: 48px;
+    font-size: 25px;
     font-family: 'Press Start 2P', cursive; /* Use a retro font */
     text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00, 0 0 40px #00ff00;
     margin-bottom: 20px;
 }
 
 .move-counter {
-    font-size: 24px;
+    font-size: 15px;
     font-family: 'Press Start 2P', cursive; /* Use a retro font */
-    text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00, 0 0 40px #00ff00;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0), 0 0 20px #ffffff, 0 0 30px #ffffff, 0 0 40px rgb(255, 255, 255);
     margin-top: 20px;
     text-align: center;
     color: white;
 }
+
+.gear-icon {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 50px;
+    height: auto;
+    z-index: 100;
+    cursor: pointer;
+}
+
+
+
+/* Visible state for the table */
+table.zoom-in {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Initial hidden state for the numbers */
+td {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+

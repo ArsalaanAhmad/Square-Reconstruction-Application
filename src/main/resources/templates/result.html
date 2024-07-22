@@ -6,24 +6,23 @@
     <script src="/js/magic-square.js" defer></script>
 </head>
 <body>
+
 <h1 class="result-header">Magic Square Result for <span th:text="${name}">Name</span></h1>
 <div class="move-counter">Moves: <span id="moveCount">0</span></div>
-<table>
-    <tr th:each="row, rowStat : ${magicSquare}">
-        <td th:each="cell, cellStat : ${row}"
-            th:id="'cell-' + ${rowStat.index} + '-' + ${cellStat.index}"
-            th:text="${cell}"
-            onclick="selectCell(this)">0</td>
-    </tr>
-</table>
+<div class="outer-container">
+    <div class="inner-container">
+        <table id="magicSquareTable">
+            <tr th:each="row, rowStat : ${magicSquare}">
+                <td th:each="cell, cellStat : ${row}"
+                    th:id="'cell-' + ${rowStat.index} + '-' + ${cellStat.index}"
+                    th:text="${cell}"
+                    onclick="selectCell(this)">0</td>
+            </tr>
+        </table>
+    </div>
+</div>
 <a href="/" class="play-button" onclick="playClickingSound()"><span>Start Over</span></a>
 <div id="validationResult" class="validation-message"></div>
-<form id="swapForm" method="post" action="/swap" style="display:none;">
-    <input type="hidden" name="x1" id="x1">
-    <input type="hidden" name="y1" id="y1">
-    <input type="hidden" name="x2" id="x2">
-    <input type="hidden" name="y2" id="y2">
-</form>
 
 <audio id="backgroundMusic" loop autoplay>
     <source src="/audio/StartingMusic.mp3" type="audio/mpeg">
@@ -44,6 +43,21 @@
                 clickingSound.play();
             });
         });
+
+        // Add the 3-second delay and zoom-in effect
+        const table = document.querySelector('#magicSquareTable');
+        const delayCells = document.querySelectorAll('td');
+
+        setTimeout(() => {
+            table.classList.add('zoom-in');
+
+            // Add a delay for each number to appear one by one
+            delayCells.forEach((cell, index) => {
+                setTimeout(() => {
+                    cell.style.opacity = 1;
+                }, index * 100); // Adjust the delay time as needed (e.g., 100ms per cell)
+            });
+        }, 3000); // 3-second delay before showing the table
     });
 </script>
 </body>
